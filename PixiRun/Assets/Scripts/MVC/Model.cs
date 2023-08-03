@@ -42,7 +42,6 @@ public class Model : MonoBehaviour, IObservable
     private void Start()
     {
         _myController = new Controller(this, GetComponent<View>());
-
     }
 
     private void FixedUpdate()
@@ -98,12 +97,22 @@ public class Model : MonoBehaviour, IObservable
         {
             GetHit();
         }
+
+        /*if(agarro moneda)
+                PickUpCoin();*/
     }
 
     void GetHit()
     {
         //le saco vida
         NotifyToObservers("GetHit");
+    }
+
+
+    void PickUpCoin()
+    {
+        //sumo cant de monedas?
+        NotifyToObservers("PickUpCoin");
     }
 
     #region Observer
@@ -126,5 +135,4 @@ public class Model : MonoBehaviour, IObservable
         }
     }
     #endregion
-
 }
