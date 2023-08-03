@@ -17,6 +17,7 @@ public class SinMovement : IAdvance
 
     public void Advance(float xAxis)
     {
+
         float amplitude = 1.5f;
         float frequency = 1;
 

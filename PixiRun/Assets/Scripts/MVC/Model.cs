@@ -77,6 +77,8 @@ public class Model : MonoBehaviour, IObservable
     {
         _currentAdvance = _sinMovement;
         //setear y mas alta para que parezca que si vuela!!!!!
+
+        transform.position = new Vector3(transform.position.x, 4f, transform.position.z);
         _myRb.useGravity = false;
         SineMovement();
     }

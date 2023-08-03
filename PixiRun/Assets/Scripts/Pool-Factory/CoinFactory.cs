@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaclesFactory : MonoBehaviour
+public class CoinFactory : MonoBehaviour
 {
-    public static ObstaclesFactory Instance { get; private set; }
+    public static CoinFactory Instance { get; private set; }
 
-    [SerializeField] Obstacles _obstaclePrefab;
-    [SerializeField] int _obstacleStock = 5;
+    [SerializeField] Coin _coinPrefab;
+    [SerializeField] int _coinStock = 5;
 
 
-    ObjectPool<Obstacles> _pool;
+    ObjectPool<Coin> _pool;
 
     void Start()
     {
@@ -22,27 +22,27 @@ public class ObstaclesFactory : MonoBehaviour
         //3.- La funcion que contiene la logica de que hacer al devolver el objeto (turnOffCallback)
         //4.- La cantidad de objetos que se crearan en un principio
         //5.- Si es dinamico o no
-        _pool = new ObjectPool<Obstacles>(ObstacleCreator, Obstacles.TurnOn, Obstacles.TurnOff, _obstacleStock);
+        _pool = new ObjectPool<Coin>(CoinCreator, Coin.TurnOn, Coin.TurnOff, _coinStock);
 
         //_pool = new ObjectPool<Bullet>(() => Instantiate(_bulletPrefab), (x) => x.gameObject.SetActive(true), (x) => x.gameObject.SetActive(false), 3);
     }
 
     //Funcion que contiene la logica de la creacion de la bala
-    Obstacles ObstacleCreator()
+    Coin CoinCreator()
     {
-        var temp = Instantiate(_obstaclePrefab, transform);
+        var temp = Instantiate(_coinPrefab, transform);
         return temp;
     }
 
     //Funcion que va a ser llamada cuando se pida un objeto
-    public Obstacles GetObject()
+    public Coin GetObject()
     {
         var temp = _pool.GetObject();
         return temp;
     }
 
     //Funcion que va a ser llamada cuando el objeto tenga que ser devuelto al Pool
-    public void ReturnObstacle(Obstacles b)
+    public void ReturnCoin(Coin b)
     {
         _pool.ReturnObject(b);
     }

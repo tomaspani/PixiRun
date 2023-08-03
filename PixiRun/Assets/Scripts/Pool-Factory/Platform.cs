@@ -9,7 +9,18 @@ public class Platform : MonoBehaviour
     float _currentLifeTime;
 
     Obstacles _obs;
-    
+    List<Coin> _coins;
+    Coin tempCoin;
+
+    public Collider _coinField;
+
+    private void Awake()
+    {
+        _coins = new List<Coin>();
+        Debug.Log(_coins);
+
+    }
+
     void Update()
     {
 
@@ -30,13 +41,35 @@ public class Platform : MonoBehaviour
         _obs.transform.position = transform.GetChild(r).transform.position;
     }
 
+    public void SpawnCoin()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            tempCoin = CoinFactory.Instance.GetObject();
+            tempCoin.transform.position = GetRandomPointInCollider(_coinField);
+            Debug.Log(_coins);
+            _coins.Add(tempCoin);
+        }
+    }
+
+    Vector3 GetRandomPointInCollider(Collider collider)
+    {
+        return new Vector3(
+            Random.Range(collider.bounds.min.x, collider.bounds.max.x),
+            0f,
+            Random.Range(collider.bounds.min.z, collider.bounds.max.z));
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(this.gameObject.name);
             PlatformFactory.Instance.ReturnPlatform(this);
-            ObstaclesFactory.Instance.ReturnPlatform(_obs);
+            ObstaclesFactory.Instance.ReturnObstacle(_obs);
+            foreach (Coin c in _coins)
+            {
+                CoinFactory.Instance.ReturnCoin(c);
+            }
             PlatformFactory.Instance.GetObject();
         }
     }
