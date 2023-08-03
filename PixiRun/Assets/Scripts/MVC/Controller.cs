@@ -14,7 +14,7 @@ public class Controller : IController
 
         if (v != null)
         {
-            
+            _m.OnJump += v.OnJump;
         }
     }
 
@@ -26,5 +26,8 @@ public class Controller : IController
     public void OnUpdate()
     {
         _horizontalAxi = Input.GetAxis("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            _m.Jump();
     }
 }

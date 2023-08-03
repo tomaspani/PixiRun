@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class View : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Animator _animator;
+
+    private void Awake()
     {
-        
+        _animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnJump()
     {
-        
+        _animator.SetTrigger("jump");
     }
 }
