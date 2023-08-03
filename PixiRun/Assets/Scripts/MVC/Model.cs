@@ -27,7 +27,7 @@ public class Model : MonoBehaviour
 
     public void Movement(float xAxis)
     {
-        Vector3 direction = new Vector3(xAxis, 0 , 0);
+        Vector3 direction = new Vector3(xAxis, 0 , 1);
 
         if (direction.sqrMagnitude > 1)
         {
