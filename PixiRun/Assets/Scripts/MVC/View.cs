@@ -15,4 +15,20 @@ public class View : MonoBehaviour
     {
         _animator.SetTrigger("jump");
     }
+
+    public void SineMovement()
+    {
+        //cambiar de animacion pq esta volando
+        _animator.SetBool("isFlying", true);
+    }
+    
+    public void NormalMovement()
+    {
+        _animator.SetBool("isFlying", false);
+    }
+
+    public void InvertedMovement()
+    {
+
+    }
 }

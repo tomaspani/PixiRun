@@ -15,6 +15,8 @@ public class Controller : IController
         if (v != null)
         {
             _m.OnJump += v.OnJump;
+            _m.SineMovement += v.SineMovement;
+            _m.NormalMovement += v.NormalMovement;
         }
     }
 
@@ -29,5 +31,15 @@ public class Controller : IController
 
         if (Input.GetKeyDown(KeyCode.Space))
             _m.Jump();
+
+        if (Input.GetKeyDown(KeyCode.F))
+            _m.SetSineM();
+
+        if (Input.GetKeyDown(KeyCode.G))
+            _m.SetNormalM();
+        
+        if (Input.GetKeyDown(KeyCode.H))
+            _m.SetInvertedM();
+
     }
 }

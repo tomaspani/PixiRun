@@ -14,17 +14,22 @@ public class Model : MonoBehaviour
     IController _myController;
 
     public event Action OnJump = delegate { };
+    public event Action SineMovement = delegate { };
+    public event Action NormalMovement = delegate { };
+    public event Action InvertedMovement = delegate { };
 
 
     IAdvance _normalMovement;
     IAdvance _sinMovement;
+    IAdvance _invertedMovement;
     IAdvance _currentAdvance;
 
     private void Awake()
     {
         _normalMovement = new NormalMovement(_myRb, this.transform, _speed);
         _sinMovement = new SinMovement(_myRb, this.transform, _speed);
-        _currentAdvance = _sinMovement;
+        _invertedMovement = new InvertedMovement(_myRb, this.transform, _speed);
+        _currentAdvance = _normalMovement;
     }
 
     private void Start()
@@ -40,27 +45,9 @@ public class Model : MonoBehaviour
 
     public void Movement(float xAxis)
     {
-        //_currentAdvance = _normalMovement;
-
-        
         _currentAdvance.Advance(xAxis);
     }
    
-
-    void NormalMovement(float xAxis)
-    {
-        Vector3 direction = new Vector3(xAxis, 0, 1);
-        if (direction.sqrMagnitude > 1)
-        {
-            direction.Normalize();
-        }
-        _myRb.MovePosition(transform.position + direction * (_speed * Time.fixedDeltaTime));
-    }
-
-    void SinMovement(float xAxis)
-    {
-        
-    }
 
     public void Jump()
     {
@@ -72,6 +59,29 @@ public class Model : MonoBehaviour
 
         OnJump();
     }    
+
+    public void SetNormalM()
+    {
+        _currentAdvance = _normalMovement;
+        _myRb.useGravity = true;
+        NormalMovement();
+    }
+
+    public void SetSineM()
+    {
+        _currentAdvance = _sinMovement;
+        //setear y mas alta para que parezca que si vuela!!!!!
+        _myRb.useGravity = false;
+        SineMovement();
+    }
+    
+    public void SetInvertedM()
+    {
+        _currentAdvance = _invertedMovement;
+        _myRb.useGravity = true;
+        InvertedMovement();
+    }
+
 
 
     private void Update()
