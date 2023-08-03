@@ -15,4 +15,6 @@ public class Obstacles : MonoBehaviour
     {
         b.gameObject.SetActive(false);
     }
+
+
 }

@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass
       objectReference: {fileID: 0}
+    - target: {fileID: 2800906653812166642, guid: 7f98811c9a3fcb542898a81fd585bcdb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3284533082160420168, guid: 7f98811c9a3fcb542898a81fd585bcdb, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1213,6 +1217,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 7906029340409528552, guid: 1ed4e05dc9e3e4348803a9cf2aec7fb9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ed4e05dc9e3e4348803a9cf2aec7fb9, type: 3}
 --- !u!1 &468471618845295723
@@ -1343,7 +1351,7 @@ GameObject:
   - component: {fileID: 6238349752881595171}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1988,7 +1996,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &4821644187854395152
 MonoBehaviour:
@@ -2002,7 +2010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48dac8b45f48ae843bd425d6d7238d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 10
   _jumpForce: 320
   _myRb: {fileID: 4750751214818626451}
   isG: 0
