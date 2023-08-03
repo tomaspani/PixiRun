@@ -8,24 +8,35 @@ public class Platform : MonoBehaviour
     [SerializeField] float _lifeTime;
     float _currentLifeTime;
 
-
+    
     void Update()
     {
 
         _currentLifeTime -= Time.deltaTime;
 
-        if (_currentLifeTime <= 0)
+        /*if (_currentLifeTime <= 0)
         {
             //"MUERO"
-            PlatformFactory.Instance.ReturnBullet(this);
-        }
+            PlatformFactory.Instance.ReturnPlatform(this);
+        }*/
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log(this.gameObject.name);
+            PlatformFactory.Instance.ReturnPlatform(this);
+            PlatformFactory.Instance.GetObject();
+        }
     }
 
     private void Reset()
     {
         _currentLifeTime = _lifeTime;
     }
+
 
     public static void TurnOn(Platform b)
     {

@@ -35,7 +35,7 @@ public class ObjectPool<T>
         {
             T obj = _factoryMethod();
 
-            _TurnOffCallback(obj);
+            //_TurnOffCallback(obj);
 
             _currentStock.Add(obj);
         }
