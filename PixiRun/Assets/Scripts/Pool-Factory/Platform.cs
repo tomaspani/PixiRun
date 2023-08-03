@@ -8,6 +8,7 @@ public class Platform : MonoBehaviour
     [SerializeField] float _lifeTime;
     float _currentLifeTime;
 
+    Obstacles _obs;
     
     void Update()
     {
@@ -22,12 +23,20 @@ public class Platform : MonoBehaviour
 
     }
 
+    public void SpawnObstacle(Obstacles o)
+    {
+        int r = Random.Range(2, 5);
+        _obs = o;
+        _obs.transform.position = transform.GetChild(r).transform.position;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log(this.gameObject.name);
             PlatformFactory.Instance.ReturnPlatform(this);
+            ObstaclesFactory.Instance.ReturnPlatform(_obs);
             PlatformFactory.Instance.GetObject();
         }
     }

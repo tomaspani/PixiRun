@@ -31,18 +31,23 @@ public class PlatformFactory : MonoBehaviour
     //Funcion que contiene la logica de la creacion de la bala
     Platform PlatformCreator()
     {
-        var temp = Instantiate(_platformPrefab, nextSpawnTile, Quaternion.identity, transform);
-        nextSpawnTile = temp.transform.GetChild(1).transform.position;
-        return temp;
+        var tempPlatformer = Instantiate(_platformPrefab, nextSpawnTile, Quaternion.identity, transform);
+        var tempObstacle = ObstaclesFactory.Instance.GetObject();
+
+        tempPlatformer.SpawnObstacle(tempObstacle);
+
+        nextSpawnTile = tempPlatformer.transform.GetChild(1).transform.position;
+        return tempPlatformer;
     }
 
     //Funcion que va a ser llamada cuando se pida un objeto
     public Platform GetObject()
     {
-        var temp = _pool.GetObject();
-        temp.transform.position = nextSpawnTile;
-        nextSpawnTile = temp.transform.GetChild(1).transform.position;
-        return temp;
+        var tempPlatformer = _pool.GetObject();
+        tempPlatformer.transform.position = nextSpawnTile;
+        tempPlatformer.SpawnObstacle(ObstaclesFactory.Instance.GetObject());
+        nextSpawnTile = tempPlatformer.transform.GetChild(1).transform.position;
+        return tempPlatformer;
     }
 
     //Funcion que va a ser llamada cuando el objeto tenga que ser devuelto al Pool
