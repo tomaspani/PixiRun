@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Model : MonoBehaviour
+public class Model : MonoBehaviour, IObservable
 {
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
@@ -13,16 +13,21 @@ public class Model : MonoBehaviour
 
     IController _myController;
 
+
+    #region Strategy
     public event Action OnJump = delegate { };
     public event Action SineMovement = delegate { };
     public event Action NormalMovement = delegate { };
     public event Action InvertedMovement = delegate { };
 
-
     IAdvance _normalMovement;
     IAdvance _sinMovement;
     IAdvance _invertedMovement;
     IAdvance _currentAdvance;
+    #endregion
+
+    List<IObserver> _myObservers;
+
 
     private void Awake()
     {
@@ -30,6 +35,8 @@ public class Model : MonoBehaviour
         _sinMovement = new SinMovement(_myRb, this.transform, _speed);
         _invertedMovement = new InvertedMovement(_myRb, this.transform, _speed);
         _currentAdvance = _normalMovement;
+
+        _myObservers = new List<IObserver>();
     }
 
     private void Start()
@@ -82,12 +89,42 @@ public class Model : MonoBehaviour
         InvertedMovement();
     }
 
-
-
     private void Update()
     {
         _myController.OnUpdate();
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GetHit();
+        }
     }
 
-   
+    void GetHit()
+    {
+        //le saco vida
+        NotifyToObservers("GetHit");
+    }
+
+    #region Observer
+    public void Subscribe(IObserver obs)
+    {
+        if (!_myObservers.Contains(obs))
+            _myObservers.Add(obs);
+    }
+
+    public void Unsubscribe(IObserver obs)
+    {
+        _myObservers.Remove(obs);
+    }
+
+    public void NotifyToObservers(string action)
+    {
+        for (int i = _myObservers.Count - 1; i >= 0; i--)
+        {
+            _myObservers[i].Notify(action);
+        }
+    }
+    #endregion
+
 }
