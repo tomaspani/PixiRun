@@ -16,7 +16,7 @@ public class ObstaclesFactory : MonoBehaviour
     void Start()
     {
         Instance = this;
-        _obstaclesPrefab = new List<Obstacles>();
+        //_obstaclesPrefab = new List<Obstacles>();
         //Creo un nuevo pool pasandole:
         //1.- La funcion que contiene la logica de instanciar el objeto (factoryMethod)
         //2.- La funcion que contiene la logica de que hacer al pedir el objeto (turnOnCallback)
@@ -31,7 +31,32 @@ public class ObstaclesFactory : MonoBehaviour
     //Funcion que contiene la logica de la creacion de la bala
     Obstacles ObstacleCreator()
     {
-        var temp = Instantiate(_obstaclePrefab, transform);
+        int chance = Random.Range(0, 9);
+        Obstacles temp;
+        switch (chance)
+        {
+            case < 5: //box 
+                {
+                    temp = Instantiate(_obstaclesPrefab[0], transform);
+                    break;
+                }
+            case >= 5 and < 7://spike
+                {
+                    temp = temp = Instantiate(_obstaclesPrefab[3], transform);
+                    break;
+                }
+            case >= 7 and < 8://fence
+                {
+                    temp = temp = Instantiate(_obstaclesPrefab[1], transform);
+                    break;
+                }
+            case >= 8://laser
+                {
+                    temp = temp = Instantiate(_obstaclesPrefab[2], transform);
+                    break;
+                }
+        }
+
         return temp;
     }
 
@@ -39,6 +64,7 @@ public class ObstaclesFactory : MonoBehaviour
     public Obstacles GetObject()
     {
         var temp = _pool.GetObject();
+        Debug.Log(temp.type);
         return temp;
     }
 

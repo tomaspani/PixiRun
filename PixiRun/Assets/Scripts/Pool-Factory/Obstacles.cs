@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacles : MonoBehaviour
 {
     [SerializeField] protected ObstacleTypes _type;
+    public ObstacleTypes type { get { return _type; } }
 
     public static void TurnOn(Obstacles b)
     {

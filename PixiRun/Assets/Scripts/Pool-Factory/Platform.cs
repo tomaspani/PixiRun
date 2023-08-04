@@ -35,18 +35,27 @@ public class Platform : MonoBehaviour
 
     public void SpawnObjects(Obstacles o, Coin c)
     {
-        int rObstacle = Random.Range(2, 5);
-        int rCoin = Random.Range(2, 5);
-        while (rObstacle == rCoin)
+        if(o.type == ObstacleTypes.Fence || o.type == ObstacleTypes.Laser)
         {
-            rCoin = Random.Range(2, 5);
+            _obs = o;
+            _obs.transform.position = transform.GetChild(3).transform.position;
         }
-        _obs = o;
-        _obs.transform.position = transform.GetChild(rObstacle).transform.position;
+        else
+        {
+            int rObstacle = Random.Range(2, 5);
+            int rCoin = Random.Range(2, 5);
+            while (rObstacle == rCoin)
+            {
+                rCoin = Random.Range(2, 5);
+            }
+            _obs = o;
+            _obs.transform.position = transform.GetChild(rObstacle).transform.position;
 
-        tempCoin = c;
-        tempCoin.Reset();
-        tempCoin.transform.position = new Vector3(transform.GetChild(rCoin).transform.position.x, .5f, transform.GetChild(rCoin).transform.position.z);
+            tempCoin = c;
+            tempCoin.Reset();
+            tempCoin.transform.position = new Vector3(transform.GetChild(rCoin).transform.position.x, .5f, transform.GetChild(rCoin).transform.position.z);
+        }
+        
     }
     #region "DEPRECATED"
     /*
@@ -92,7 +101,7 @@ public class Platform : MonoBehaviour
         {
             PlatformFactory.Instance.ReturnPlatform(this);
             ObstaclesFactory.Instance.ReturnObstacle(_obs);
-            if(tempCoin.isActiveAndEnabled)
+            if(tempCoin != null && tempCoin.isActiveAndEnabled)
                 CoinFactory.Instance.ReturnCoin(tempCoin);
             Debug.Log("aaa");
             PlatformFactory.Instance.GetObject();
