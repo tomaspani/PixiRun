@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour, ICollectable
 {
     public static event Action OnCoinCollected;
 
+
     public static void TurnOn(Coin b)
     {
         b.gameObject.SetActive(true);
