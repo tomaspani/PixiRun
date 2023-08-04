@@ -111,7 +111,7 @@ public class Model : MonoBehaviour, IObservable
         _canJump = false;
         _canDodge = false;
         _currentAdvance = _sinMovement;
-        transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 3f, transform.position.z);
         _myRb.useGravity = false;
         SineMovement();
     }

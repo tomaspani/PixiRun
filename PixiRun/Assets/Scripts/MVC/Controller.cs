@@ -38,8 +38,10 @@ public class Controller : IController
 
 
 
-        //if (Input.GetKeyDown(KeyCode.S))
-            //_m.Down();
+        if (Input.GetKeyDown(KeyCode.F))
+            _m.SetSineM();
+        if (Input.GetKeyDown(KeyCode.G))
+            _m.SetNormalM();
 
     }
 
