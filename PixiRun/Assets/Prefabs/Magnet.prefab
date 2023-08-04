@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1433235162681964926}
   - component: {fileID: 2505802291829988842}
   - component: {fileID: 6481535560686957703}
+  - component: {fileID: 4055952993363914326}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -97,3 +98,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.39508, y: 2.8891191, z: 0.797674}
   m_Center: {x: 0, y: -0.25427753, z: 0}
+--- !u!114 &4055952993363914326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008811937371116303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ecb7831a734d84482155019d4743f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 5
+  magnetStrength: 5

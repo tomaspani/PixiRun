@@ -96,6 +96,26 @@ public class Model : MonoBehaviour, IObservable
         InvertedMovement();
     }
 
+    /*public void CoinMagnet(float magnetStrength)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, magnetStrength);
+        Debug.LogError("aaaa");
+        foreach (Collider collider in colliders)
+        {
+            // Check if the object has a Rigidbody and is not the player/magnet itself
+            if (collider.CompareTag("Coin") && collider.attachedRigidbody != null && collider.gameObject != gameObject)
+            {
+                Vector3 directionToMagnet = transform.position - collider.transform.position;
+                float distance = directionToMagnet.magnitude;
+
+                // Apply force to pull the object towards the magnet
+                float forceMagnitude = magnetStrength / Mathf.Max(distance, 0.1f);
+                Vector3 force = directionToMagnet.normalized * forceMagnitude;
+                collider.attachedRigidbody.AddForce(force);
+            }
+        }
+    }*/
+
     private void Update()
     {
         _myController.OnUpdate();

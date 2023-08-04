@@ -45,6 +45,7 @@ public class Platform : MonoBehaviour
         _obs.transform.position = transform.GetChild(rObstacle).transform.position;
 
         tempCoin = c;
+        tempCoin.Reset();
         tempCoin.transform.position = new Vector3(transform.GetChild(rCoin).transform.position.x, .5f, transform.GetChild(rCoin).transform.position.z);
     }
     #region "DEPRECATED"

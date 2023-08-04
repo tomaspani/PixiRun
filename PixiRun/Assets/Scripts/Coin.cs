@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Coin : MonoBehaviour, ICollectable
 {
     public static event Action OnCoinCollected;
@@ -15,8 +16,12 @@ public class Coin : MonoBehaviour, ICollectable
 
     public static void TurnOff(Coin b)
     {
-        Debug.Log("a");
         b.gameObject.SetActive(false);
+    }
+
+    public void Reset()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public void Collect()
