@@ -45,5 +45,7 @@ public class CoinFactory : MonoBehaviour
     public void ReturnCoin(Coin b)
     {
         _pool.ReturnObject(b);
+        Debug.Log("aa");
+
     }
 }

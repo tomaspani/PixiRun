@@ -33,9 +33,10 @@ public class PlatformFactory : MonoBehaviour
     {
         var tempPlatformer = Instantiate(_platformPrefab, nextSpawnTile, Quaternion.identity, transform);
         var tempObstacle = ObstaclesFactory.Instance.GetObject();
+        var tempCoin = CoinFactory.Instance.GetObject();
         tempPlatformer.SpawnObstacle(tempObstacle);
+        tempPlatformer.SpawnCoin(tempCoin);
         nextSpawnTile = tempPlatformer.transform.GetChild(1).transform.position;
-        tempPlatformer.SpawnCoin();
         return tempPlatformer;
     }
 
@@ -45,8 +46,8 @@ public class PlatformFactory : MonoBehaviour
         var tempPlatformer = _pool.GetObject();
         tempPlatformer.transform.position = nextSpawnTile;
         tempPlatformer.SpawnObstacle(ObstaclesFactory.Instance.GetObject());
+        tempPlatformer.SpawnCoin(CoinFactory.Instance.GetObject());
         nextSpawnTile = tempPlatformer.transform.GetChild(1).transform.position;
-        tempPlatformer.SpawnCoin();
         return tempPlatformer;
     }
 

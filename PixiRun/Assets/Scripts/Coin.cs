@@ -11,6 +11,7 @@ public class Coin : MonoBehaviour
 
     public static void TurnOff(Coin b)
     {
+        Debug.Log("a");
         b.gameObject.SetActive(false);
     }
 }

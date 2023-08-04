@@ -9,15 +9,14 @@ public class Platform : MonoBehaviour
     float _currentLifeTime;
 
     Obstacles _obs;
-    List<Coin> _coins;
+    public List<Coin> _coins;
     Coin tempCoin;
 
-    public Collider _coinField;
+    public Transform _coinField;
 
     private void Awake()
     {
         _coins = new List<Coin>();
-        Debug.Log(_coins);
 
     }
 
@@ -41,23 +40,33 @@ public class Platform : MonoBehaviour
         _obs.transform.position = transform.GetChild(r).transform.position;
     }
 
-    public void SpawnCoin()
+    public void SpawnCoin(Coin c)
     {
-        for (int i = 0; i < 5; i++)
-        {
-            tempCoin = CoinFactory.Instance.GetObject();
-            tempCoin.transform.position = GetRandomPointInCollider(_coinField);
-            Debug.Log(_coins);
-            _coins.Add(tempCoin);
-        }
+        int r = Random.Range(2, 5);
+        tempCoin = c;
+        tempCoin.gameObject.SetActive(true);
+        // Debug the position before setting it
+        Debug.Log("Before setting position: " + tempCoin.transform.position);
+
+        tempCoin.transform.position = GetRandomPointInCollider(_coinField);
+
+        // Debug the position after setting it
+        Debug.Log("After setting position: " + tempCoin.transform.position);
+        //tempCoin.transform.position = new Vector3(transform.GetChild(r).transform.position.x, .5f, transform.GetChild(r).transform.position.z) ;
+
     }
 
-    Vector3 GetRandomPointInCollider(Collider collider)
+    Vector3 GetRandomPointInCollider(Transform transform)
     {
-        return new Vector3(
+        Collider collider = transform.GetComponent<Collider>();
+        Vector3 pos = new Vector3(
             Random.Range(collider.bounds.min.x, collider.bounds.max.x),
             0f,
             Random.Range(collider.bounds.min.z, collider.bounds.max.z));
+
+        Debug.DrawLine(pos - Vector3.right * 0.1f, pos + Vector3.right * 0.1f, Color.red, 5f);
+        Debug.DrawLine(pos - Vector3.forward * 0.1f, pos + Vector3.forward * 0.1f, Color.red, 5f);
+        return pos;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,10 +75,8 @@ public class Platform : MonoBehaviour
         {
             PlatformFactory.Instance.ReturnPlatform(this);
             ObstaclesFactory.Instance.ReturnObstacle(_obs);
-            foreach (Coin c in _coins)
-            {
-                CoinFactory.Instance.ReturnCoin(c);
-            }
+            CoinFactory.Instance.ReturnCoin(tempCoin);
+            Debug.Log("aaa");
             PlatformFactory.Instance.GetObject();
         }
     }
