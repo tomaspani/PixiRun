@@ -11,10 +11,11 @@ public class Model : MonoBehaviour, IObservable
     [SerializeField] Rigidbody _myRb;
 
     IController _myController;
+    [SerializeField] int _obstacleLayer;
 
-    float _jumpCooldown = 1.5f;
-    float _dodgeCooldown = 1.5f;
-    [SerializeField]bool _canJump = true;
+    [SerializeField] float _jumpCooldown = 1.5f;
+    [SerializeField] float _dodgeCooldown = 1.5f;
+    [SerializeField] bool _canJump = true;
     [SerializeField] bool _canDodge = true;
 
     #region Strategy
@@ -47,6 +48,7 @@ public class Model : MonoBehaviour, IObservable
     private void Start()
     {
         _myController = new Controller(this, GetComponent<View>());
+        _obstacleLayer = LayerMask.NameToLayer("Obstacle");
     }
 
     private void FixedUpdate()
@@ -81,9 +83,13 @@ public class Model : MonoBehaviour, IObservable
     
     IEnumerator DownCooldown()
     {
+        transform.GetComponent<BoxCollider>().enabled = true;
+        transform.GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(_dodgeCooldown);
         _canJump = true;
         _canDodge = true;
+        transform.GetComponent<BoxCollider>().enabled = false;
+        transform.GetComponent<CapsuleCollider>().enabled = true;
     }
 
     public void Down()
@@ -145,18 +151,15 @@ public class Model : MonoBehaviour, IObservable
         }
     }*/
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == _obstacleLayer)
+            OnLose();
+    }
+
     private void Update()
     {
         _myController.OnUpdate();
-
-
-        if (Input.GetKeyDown(KeyCode.P)) //SACAR ESTO
-        {
-            OnLose();
-        }
-
-        /*if(agarro moneda)
-                PickUpCoin();*/
     }
 
     private void OnEnable()
@@ -171,14 +174,12 @@ public class Model : MonoBehaviour, IObservable
 
     void OnLose()
     {
-        //le saco vida
         NotifyToObservers("OnLose");
     }
 
 
     void PickUpCoin()
     {
-        //sumo cant de monedas?
         NotifyToObservers("PickUpCoin");
     }
 

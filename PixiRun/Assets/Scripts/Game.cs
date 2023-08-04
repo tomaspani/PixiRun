@@ -19,14 +19,12 @@ public class Game : MonoBehaviour, IObserver
     void FillActionsDictionary()
     {
         _observerActions = new Dictionary<string, System.Action>();
-
         _observerActions.Add("OnLose", OnLose);
     }
 
     private void Start()
     {
         _object = FindObjectOfType<Model>();
-
         _object?.Subscribe(this);
     }
 
