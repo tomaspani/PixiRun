@@ -17,7 +17,6 @@ public class NormalMovement : IAdvance
 
     public void Advance(float xAxis)
     {
-        //_rb.useGravity = true;
         Vector3 direction = new Vector3(xAxis, 0, 1);
         if (direction.sqrMagnitude > 1)
         {

@@ -9,7 +9,6 @@ public class Model : MonoBehaviour, IObservable
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] Rigidbody _myRb;
-    public bool isG;
 
     IController _myController;
 
@@ -97,17 +96,17 @@ public class Model : MonoBehaviour, IObservable
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GetHit();
+            OnLose();
         }
 
         /*if(agarro moneda)
                 PickUpCoin();*/
     }
 
-    void GetHit()
+    void OnLose()
     {
         //le saco vida
-        NotifyToObservers("GetHit");
+        NotifyToObservers("OnLose");
     }
 
 
