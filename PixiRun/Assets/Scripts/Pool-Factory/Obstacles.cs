@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    
+    [SerializeField] protected ObstacleTypes _type;
 
     public static void TurnOn(Obstacles b)
     {
@@ -17,4 +17,12 @@ public class Obstacles : MonoBehaviour
     }
 
 
+}
+
+public enum ObstacleTypes
+{
+    Box,
+    Laser,
+    Fence,
+    Spikes
 }

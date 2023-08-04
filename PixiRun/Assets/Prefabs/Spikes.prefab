@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b92c4e0c1ffa429905d1a4803beb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 3
   spikes: {fileID: 8108792536029661639}
 --- !u!65 &7106934728303564370
 BoxCollider:
