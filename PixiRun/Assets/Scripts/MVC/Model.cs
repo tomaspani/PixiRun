@@ -12,6 +12,10 @@ public class Model : MonoBehaviour, IObservable
 
     IController _myController;
 
+    float _jumpCooldown = 3f;
+    float _dodgeCooldown = 3f;
+    bool _canJump = true;
+    bool _canDodge = true;
 
     #region Strategy
     public event Action OnJump = delegate { };
@@ -58,14 +62,16 @@ public class Model : MonoBehaviour, IObservable
 
     public void Jump()
     {
-        /* float height = GetComponent<Collider>().bounds.size.y;
-         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2), _groundMask);
-        no anda */
-        
-        _myRb.AddForce(Vector3.up * _jumpForce);
-
-        OnJump();
+        if (_canJump)
+        {
+            _canJump = false;
+            _myRb.AddForce(Vector3.up * _jumpForce);
+            OnJump();
+            StartCoroutine(JumpCooldown());
+        }
     }    
+
+
 
     public void Down()
     {

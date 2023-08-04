@@ -5,6 +5,7 @@ using UnityEngine;
 public class View : MonoBehaviour
 {
     Animator _animator;
+    [SerializeField] GameObject _wings;
 
     private void Awake()
     {
@@ -18,12 +19,13 @@ public class View : MonoBehaviour
 
     public void SineMovement()
     {
-        //cambiar de animacion pq esta volando
+        _wings.SetActive(true);
         _animator.SetBool("isFlying", true);
     }
     
     public void NormalMovement()
     {
+        _wings.SetActive(false);
         _animator.SetBool("isFlying", false);
     }
 

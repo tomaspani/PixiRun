@@ -30,13 +30,15 @@ public class Controller : IController
     {
         _horizontalAxi = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W))
+        {
             _m.Jump();
+        }
         
         if (Input.GetKeyDown(KeyCode.S))
             _m.Down();
 
-        if (Input.GetKeyDown(KeyCode.F))
+       /* if (Input.GetKeyDown(KeyCode.F))
             _m.SetSineM();
 
         if (Input.GetKeyDown(KeyCode.G))
@@ -44,6 +46,7 @@ public class Controller : IController
         
         if (Input.GetKeyDown(KeyCode.H))
             _m.SetInvertedM();
-
+       */
     }
+
 }
