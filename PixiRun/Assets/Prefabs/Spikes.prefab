@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 4206769882985653640}
   - component: {fileID: 8048057826982135352}
   - component: {fileID: 5224452448608992256}
+  - component: {fileID: 8108792536029661639}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -193,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6170138397095909057}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -264,6 +265,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.692443, y: 3.0331173, z: 3.6924431}
   m_Center: {x: 0, y: 1.5401435, z: 0}
+--- !u!111 &8108792536029661639
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170138397095909057}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 843175d0f5bf91446a05c44241ca6270, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 843175d0f5bf91446a05c44241ca6270, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &7463456219615106893
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +290,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7843112552688438775}
+  - component: {fileID: 4809155414957048210}
+  - component: {fileID: 7106934728303564370}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -288,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7463456219615106893}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3818426, y: 0.024963379, z: 6.7019687}
+  m_LocalPosition: {x: 0.16, y: -0.075036526, z: 6.81}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297,3 +316,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4809155414957048210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463456219615106893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903b92c4e0c1ffa429905d1a4803beb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikes: {fileID: 8108792536029661639}
+--- !u!65 &7106934728303564370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463456219615106893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 3, z: 4.5}
+  m_Center: {x: 0, y: 0, z: 0}
