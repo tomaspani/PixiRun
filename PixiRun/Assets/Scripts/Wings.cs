@@ -25,9 +25,12 @@ public class Wings : ItemEffect
     protected override IEnumerator ApplyEffect(Model m)
     {
         m.SetSineM();
+        Debug.Log("in Wing");
+        Debug.Log(_duration);
         yield return new WaitForSeconds(_duration);
+        Debug.Log("out Wing");
         m.SetNormalM();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 

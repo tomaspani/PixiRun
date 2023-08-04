@@ -6,6 +6,7 @@ public abstract class ItemEffect : MonoBehaviour
 {
     [SerializeField] protected float _duration;
 
+    
 
     //[SerializeField] Effect _effect;
 

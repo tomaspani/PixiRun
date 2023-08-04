@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour, IObserver
     void PickUpCoin()
     {
         _coinsQty++;
-        Debug.Log("Agarro moneda");
+        //Debug.Log("Agarro moneda");
         _coinsText.text =_coinsQty.ToString();
     }
 

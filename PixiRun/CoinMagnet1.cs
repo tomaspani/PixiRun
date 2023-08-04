@@ -50,7 +50,8 @@ public class CoinMagnet : ItemEffect
             // Start the coroutine to stop the magnet effect after the duration
             StartCoroutine(ApplyEffect(other.GetComponent<Model>()));
             Debug.LogError("yaaaaaaaaaa");
-            
+            isActivated = false;
+            playerTransform = null;
         }
     }
 
@@ -62,7 +63,7 @@ public class CoinMagnet : ItemEffect
         Debug.Log("out Magnet");
         isActivated = false;
         playerTransform = null;
-        //Destroy(this, _duration);
+        Destroy(this, _duration);
         //gameObject.SetActive(true);
     }
 
@@ -70,6 +71,7 @@ public class CoinMagnet : ItemEffect
     {
         // Wait for the specified duration
         yield return new WaitForSeconds(_duration);
+        gameObject.SetActive(false);
         Debug.Log("yolo");
         // Stop the magnet effect and reset the magnet object
         StopMagnet();

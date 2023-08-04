@@ -54,7 +54,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeTime: 10
   _coins: []
+  _itemEffects:
+  - {fileID: -1278126563976805607, guid: db20c8b7c4334ea4ba88c93915056ae7, type: 3}
+  - {fileID: 4055952993363914326, guid: 4c5907f0deee8714f9488081a9869dff, type: 3}
+  - {fileID: 6118940449493458963, guid: ccb47b4e150b82847ba3fa8d9086a216, type: 3}
+  - {fileID: 8547431938200836458, guid: 4051b45700a340f4ba92e4ce985267e6, type: 3}
   _coinField: {fileID: 8876286734380715207}
+  _itemSpawns: {fileID: 725198150871830859}
 --- !u!65 &1910784777289333715
 BoxCollider:
   m_ObjectHideFlags: 0

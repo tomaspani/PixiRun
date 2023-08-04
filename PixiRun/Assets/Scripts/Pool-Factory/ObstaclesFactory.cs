@@ -64,7 +64,6 @@ public class ObstaclesFactory : MonoBehaviour
     public Obstacles GetObject()
     {
         var temp = _pool.GetObject();
-        Debug.Log(temp.type);
         return temp;
     }
 

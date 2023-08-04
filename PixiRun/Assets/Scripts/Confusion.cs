@@ -7,7 +7,11 @@ public class Confusion : ItemEffect
     protected override IEnumerator ApplyEffect(Model M)
     {
         M.SetInvertedM();
+        Debug.Log("in Confusion");
+        Debug.Log(_duration);
+        Debug.Log(Time.time);
         yield return new WaitForSeconds(_duration);
+        Debug.Log("out confusion");
         M.SetNormalM();
         Destroy(gameObject);
     }

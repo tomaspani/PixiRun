@@ -9,10 +9,13 @@ public class Platform : MonoBehaviour
     float _currentLifeTime;
 
     Obstacles _obs;
-    public List<Coin> _coins;
+    [SerializeField] List<Coin> _coins;
+    [SerializeField] List<ItemEffect> _itemEffects;
     Coin tempCoin;
+    ItemEffect tempItem;
 
     public Transform _coinField;
+    public Transform _itemSpawns;
 
     private void Awake()
     {
@@ -55,7 +58,14 @@ public class Platform : MonoBehaviour
             tempCoin.Reset();
             tempCoin.transform.position = new Vector3(transform.GetChild(rCoin).transform.position.x, .5f, transform.GetChild(rCoin).transform.position.z);
         }
-        
+
+        int rItems = Random.Range(0, 9);
+        if(rItems < 1)
+        {
+            Debug.Log("aaaa");
+            tempItem = Instantiate(_itemEffects[Random.Range(0,4)], transform.root);
+            tempItem.transform.position = _itemSpawns.position;
+        }
     }
     #region "DEPRECATED"
     /*
@@ -101,9 +111,9 @@ public class Platform : MonoBehaviour
         {
             PlatformFactory.Instance.ReturnPlatform(this);
             ObstaclesFactory.Instance.ReturnObstacle(_obs);
+            //Destroy(tempItem);
             if(tempCoin != null && tempCoin.isActiveAndEnabled)
                 CoinFactory.Instance.ReturnCoin(tempCoin);
-            Debug.Log("aaa");
             PlatformFactory.Instance.GetObject();
         }
     }
