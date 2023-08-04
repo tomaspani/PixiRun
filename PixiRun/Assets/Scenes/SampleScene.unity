@@ -1691,6 +1691,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wing
       objectReference: {fileID: 0}
+    - target: {fileID: 3568253729351589392, guid: ccb47b4e150b82847ba3fa8d9086a216, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4237653534898029738, guid: ccb47b4e150b82847ba3fa8d9086a216, type: 3}
       propertyPath: m_RootOrder
       value: 1

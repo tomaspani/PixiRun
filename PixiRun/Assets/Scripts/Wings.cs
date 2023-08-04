@@ -27,6 +27,7 @@ public class Wings : ItemEffect
         m.SetSineM();
         yield return new WaitForSeconds(_duration);
         m.SetNormalM();
+        Destroy(gameObject);
     }
 
 
