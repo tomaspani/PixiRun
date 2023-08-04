@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657576004067027479}
   - component: {fileID: -447646828138985763}
+  - component: {fileID: 7096355063743882435}
   m_Layer: 0
   m_Name: Laser Barrier
   m_TagString: Untagged
@@ -147,6 +148,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 1
+--- !u!114 &7096355063743882435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657576004067027480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2714514cd12762408e201630e4f8c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lasers:
+  - {fileID: 657576003799368623}
+  - {fileID: 8817716873143398308}
+  - {fileID: 4963222264051371891}
 --- !u!1 &657576004818917763
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4bb377ee360635a48a489bc1dc6bf9a8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
+--- !u!1 &8817716873143398308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8912992263441953122, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
+  m_PrefabInstance: {fileID: 139503813591375558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8817716873143398309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8912992263441953123, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
@@ -416,6 +438,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8912992263441953123, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
   m_PrefabInstance: {fileID: 4562611961586826769}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4963222264051371891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8912992263441953122, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
+  m_PrefabInstance: {fileID: 4562611961586826769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8255488278829691597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,5 +527,10 @@ PrefabInstance:
 --- !u!4 &657576003799368622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8912992263441953123, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
+  m_PrefabInstance: {fileID: 8255488278829691597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &657576003799368623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8912992263441953122, guid: 13e9463f8f878a14c9c34ad496518f91, type: 3}
   m_PrefabInstance: {fileID: 8255488278829691597}
   m_PrefabAsset: {fileID: 0}
