@@ -27,6 +27,11 @@ public class View : MonoBehaviour
         _animator.SetBool("isFlying", false);
     }
 
+    public void OnDown()
+    {
+        _animator.SetTrigger("down");
+    }
+
     public void InvertedMovement()
     {
 

@@ -15,6 +15,7 @@ public class Model : MonoBehaviour, IObservable
 
     #region Strategy
     public event Action OnJump = delegate { };
+    public event Action OnDown = delegate { };
     public event Action SineMovement = delegate { };
     public event Action NormalMovement = delegate { };
     public event Action InvertedMovement = delegate { };
@@ -65,6 +66,11 @@ public class Model : MonoBehaviour, IObservable
 
         OnJump();
     }    
+
+    public void Down()
+    {
+        OnDown();
+    }
 
     public void SetNormalM()
     {
