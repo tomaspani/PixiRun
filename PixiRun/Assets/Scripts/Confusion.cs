@@ -6,6 +6,8 @@ public class Confusion : ItemEffect
 {
     protected override IEnumerator ApplyEffect(Model M)
     {
+
+        _isTrigger = true;
         M.SetInvertedM();
         Debug.Log("in Confusion");
         Debug.Log(_duration);

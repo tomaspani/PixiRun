@@ -62,7 +62,6 @@ public class Platform : MonoBehaviour
         int rItems = Random.Range(0, 9);
         if(rItems < 1)
         {
-            Debug.Log("aaaa");
             tempItem = Instantiate(_itemEffects[Random.Range(0,4)], transform.root);
             tempItem.transform.position = _itemSpawns.position;
         }
@@ -111,7 +110,8 @@ public class Platform : MonoBehaviour
         {
             PlatformFactory.Instance.ReturnPlatform(this);
             ObstaclesFactory.Instance.ReturnObstacle(_obs);
-            //Destroy(tempItem);
+            if (tempItem != null && !tempItem.isTrigger)
+                Destroy(tempItem);
             if(tempCoin != null && tempCoin.isActiveAndEnabled)
                 CoinFactory.Instance.ReturnCoin(tempCoin);
             PlatformFactory.Instance.GetObject();

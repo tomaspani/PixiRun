@@ -20,13 +20,11 @@ public class CoinMagnet : ItemEffect
 
             foreach (Collider collider in colliders)
             {
-                // Check if the object is a coin and has a Rigidbody
                 if (collider.CompareTag("Coin") && collider.attachedRigidbody != null)
                 {
                     Vector3 directionToPlayer = playerTransform.position + new Vector3(0f,0.5f,0f) - collider.transform.position;
                     float distance = directionToPlayer.magnitude;
 
-                    // Apply force to pull the coin towards the player
                     float forceMagnitude = magnetStrength*magnetMultiplier/ Mathf.Max(distance, 0.1f);
                     Vector3 force = directionToPlayer.normalized * forceMagnitude;
                     collider.attachedRigidbody.AddForce(force);
@@ -37,19 +35,13 @@ public class CoinMagnet : ItemEffect
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the trigger object is the player
         if (other.CompareTag("Player"))
         {
-            // Start the magnet effect towards the player
             isActivated = true;
             playerTransform = other.transform;
 
-            // Disable the magnet object after it's picked up
-            //gameObject.SetActive(false);
 
-            // Start the coroutine to stop the magnet effect after the duration
             StartCoroutine(ApplyEffect(other.GetComponent<Model>()));
-            Debug.LogError("yaaaaaaaaaa");
             
         }
     }
@@ -58,20 +50,17 @@ public class CoinMagnet : ItemEffect
 
     private void StopMagnet()
     {
-        // Reset the variables and re-enable the magnet object
         Debug.Log("out Magnet");
         isActivated = false;
         playerTransform = null;
-        //Destroy(this, _duration);
+        Destroy(this);
         //gameObject.SetActive(true);
     }
 
     protected override IEnumerator ApplyEffect(Model M)
     {
-        // Wait for the specified duration
+        _isTrigger = true;
         yield return new WaitForSeconds(_duration);
-        Debug.Log("yolo");
-        // Stop the magnet effect and reset the magnet object
         StopMagnet();
     }
 }

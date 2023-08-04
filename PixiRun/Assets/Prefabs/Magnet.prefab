@@ -110,6 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ecb7831a734d84482155019d4743f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 5
+  _duration: 3
   magnetStrength: 5
   magnetMultiplier: 1

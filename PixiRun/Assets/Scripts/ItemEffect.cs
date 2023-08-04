@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class ItemEffect : MonoBehaviour
 {
     [SerializeField] protected float _duration;
-
+    protected bool _isTrigger = false;
+    public bool isTrigger { get { return _isTrigger; } }
     
 
     //[SerializeField] Effect _effect;
