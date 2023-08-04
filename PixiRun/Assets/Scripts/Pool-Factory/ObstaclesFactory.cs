@@ -7,6 +7,7 @@ public class ObstaclesFactory : MonoBehaviour
     public static ObstaclesFactory Instance { get; private set; }
 
     [SerializeField] Obstacles _obstaclePrefab;
+    [SerializeField] List<Obstacles> _obstaclesPrefab;
     [SerializeField] int _obstacleStock = 5;
 
 
@@ -15,7 +16,7 @@ public class ObstaclesFactory : MonoBehaviour
     void Start()
     {
         Instance = this;
-
+        _obstaclesPrefab = new List<Obstacles>();
         //Creo un nuevo pool pasandole:
         //1.- La funcion que contiene la logica de instanciar el objeto (factoryMethod)
         //2.- La funcion que contiene la logica de que hacer al pedir el objeto (turnOnCallback)
