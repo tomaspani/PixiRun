@@ -12,10 +12,10 @@ public class Model : MonoBehaviour, IObservable
 
     IController _myController;
 
-    float _jumpCooldown = 3f;
-    float _dodgeCooldown = 3f;
-    bool _canJump = true;
-    bool _canDodge = true;
+    float _jumpCooldown = 1.5f;
+    float _dodgeCooldown = 1.5f;
+    [SerializeField]bool _canJump = true;
+    [SerializeField] bool _canDodge = true;
 
     #region Strategy
     public event Action OnJump = delegate { };
@@ -65,21 +65,42 @@ public class Model : MonoBehaviour, IObservable
         if (_canJump)
         {
             _canJump = false;
+            _canDodge = false;
             _myRb.AddForce(Vector3.up * _jumpForce);
             OnJump();
             StartCoroutine(JumpCooldown());
         }
     }    
 
-
+    IEnumerator JumpCooldown()
+    {
+        yield return new WaitForSeconds(_jumpCooldown);
+        _canJump = true;
+        _canDodge = true;
+    }
+    
+    IEnumerator DownCooldown()
+    {
+        yield return new WaitForSeconds(_dodgeCooldown);
+        _canJump = true;
+        _canDodge = true;
+    }
 
     public void Down()
     {
-        OnDown();
+        if(_canDodge)
+        {
+            _canJump = false;
+            _canDodge = false;
+            OnDown();
+            StartCoroutine(DownCooldown());
+        }
     }
 
     public void SetNormalM()
     {
+        _canJump = true;
+        _canDodge = true;
         _currentAdvance = _normalMovement;
         _myRb.useGravity = true;
         NormalMovement();
@@ -87,9 +108,9 @@ public class Model : MonoBehaviour, IObservable
 
     public void SetSineM()
     {
+        _canJump = false;
+        _canDodge = false;
         _currentAdvance = _sinMovement;
-        //setear y mas alta para que parezca que si vuela!!!!!
-
         transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
         _myRb.useGravity = false;
         SineMovement();
@@ -97,6 +118,8 @@ public class Model : MonoBehaviour, IObservable
     
     public void SetInvertedM()
     {
+        _canJump = true;
+        _canDodge = true;
         _currentAdvance = _invertedMovement;
         _myRb.useGravity = true;
         InvertedMovement();
@@ -127,7 +150,7 @@ public class Model : MonoBehaviour, IObservable
         _myController.OnUpdate();
 
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P)) //SACAR ESTO
         {
             OnLose();
         }

@@ -31,22 +31,16 @@ public class Controller : IController
         _horizontalAxi = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.W))
-        {
             _m.Jump();
-        }
         
         if (Input.GetKeyDown(KeyCode.S))
             _m.Down();
 
-       /* if (Input.GetKeyDown(KeyCode.F))
-            _m.SetSineM();
 
-        if (Input.GetKeyDown(KeyCode.G))
-            _m.SetNormalM();
-        
-        if (Input.GetKeyDown(KeyCode.H))
-            _m.SetInvertedM();
-       */
+
+        //if (Input.GetKeyDown(KeyCode.S))
+            //_m.Down();
+
     }
 
 }
