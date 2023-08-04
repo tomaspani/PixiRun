@@ -27,6 +27,7 @@ public class Model : MonoBehaviour, IObservable
 
     List<IObserver> _myObservers;
 
+    ItemEffect itemEffect;
 
     private void Awake()
     {
@@ -77,7 +78,7 @@ public class Model : MonoBehaviour, IObservable
         _currentAdvance = _sinMovement;
         //setear y mas alta para que parezca que si vuela!!!!!
 
-        transform.position = new Vector3(transform.position.x, 4f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
         _myRb.useGravity = false;
         SineMovement();
     }
@@ -101,6 +102,16 @@ public class Model : MonoBehaviour, IObservable
 
         /*if(agarro moneda)
                 PickUpCoin();*/
+    }
+
+    private void OnEnable()
+    {
+        Coin.OnCoinCollected += PickUpCoin;
+    }
+
+    private void OnDisable()
+    {
+        Coin.OnCoinCollected -= PickUpCoin;
     }
 
     void OnLose()

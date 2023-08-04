@@ -33,6 +33,22 @@ public class Platform : MonoBehaviour
 
     }
 
+    public void SpawnObjects(Obstacles o, Coin c)
+    {
+        int rObstacle = Random.Range(2, 5);
+        int rCoin = Random.Range(2, 5);
+        while (rObstacle == rCoin)
+        {
+            rCoin = Random.Range(2, 5);
+        }
+        _obs = o;
+        _obs.transform.position = transform.GetChild(rObstacle).transform.position;
+
+        tempCoin = c;
+        tempCoin.transform.position = new Vector3(transform.GetChild(rCoin).transform.position.x, .5f, transform.GetChild(rCoin).transform.position.z);
+    }
+    #region "DEPRECATED"
+    /*
     public void SpawnObstacle(Obstacles o)
     {
         int r = Random.Range(2, 5);
@@ -46,13 +62,13 @@ public class Platform : MonoBehaviour
         tempCoin = c;
         tempCoin.gameObject.SetActive(true);
         // Debug the position before setting it
-        Debug.Log("Before setting position: " + tempCoin.transform.position);
+        /*Debug.Log("Before setting position: " + tempCoin.transform.position);
 
         tempCoin.transform.position = GetRandomPointInCollider(_coinField);
 
         // Debug the position after setting it
         Debug.Log("After setting position: " + tempCoin.transform.position);
-        //tempCoin.transform.position = new Vector3(transform.GetChild(r).transform.position.x, .5f, transform.GetChild(r).transform.position.z) ;
+        tempCoin.transform.position = new Vector3(transform.GetChild(r).transform.position.x, .5f, transform.GetChild(r).transform.position.z) ;
 
     }
 
@@ -67,15 +83,16 @@ public class Platform : MonoBehaviour
         Debug.DrawLine(pos - Vector3.right * 0.1f, pos + Vector3.right * 0.1f, Color.red, 5f);
         Debug.DrawLine(pos - Vector3.forward * 0.1f, pos + Vector3.forward * 0.1f, Color.red, 5f);
         return pos;
-    }
-
+    }*/
+    #endregion
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             PlatformFactory.Instance.ReturnPlatform(this);
             ObstaclesFactory.Instance.ReturnObstacle(_obs);
-            CoinFactory.Instance.ReturnCoin(tempCoin);
+            if(tempCoin.isActiveAndEnabled)
+                CoinFactory.Instance.ReturnCoin(tempCoin);
             Debug.Log("aaa");
             PlatformFactory.Instance.GetObject();
         }
